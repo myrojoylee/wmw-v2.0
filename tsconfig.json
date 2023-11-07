@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2016",
+    "useDefineForClassFields": true,
+    // "lib": ["ES2016", "DOM", "DOM.Iterable"],
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "outDir": "../dist",
+    // "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+
+    /* Bundler mode */
+    // "moduleResolution": "bundler",
+    // "resolveJsonModule": true,
+    // "isolatedModules": true,
+    // "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noFallthroughCasesInSwitch": true,
+    "types": ["node", "vite/client"]
+  },
+  "ts-node": {
+    "files": true
+  },
+  "include": ["client/src/**/*.tsx", "client/src/**/*.ts", "process-env.d.ts"]
+}
