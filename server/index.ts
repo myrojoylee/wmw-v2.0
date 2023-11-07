@@ -11,8 +11,7 @@ const port = process.env.PORT;
 const apiKey = process.env.API_KEY;
 
 app.get("/api/apiKey", (req: Request, res: Response) => {
-  // res.send({ apiKey: apiKey });
-  res.send({ apiKey: `server is connected!` });
+  res.send({ apiKey: apiKey });
 });
 
 app.listen(port, () => {
