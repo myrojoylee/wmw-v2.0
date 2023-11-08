@@ -1,3 +1,11 @@
+export type cityInfoType = {
+  country: string;
+  lat: number;
+  lon: number;
+  name: string;
+  state: string;
+};
+
 export type currentWeatherType = {
   dt: number;
   name: string;
