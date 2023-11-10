@@ -4,7 +4,7 @@
     "useDefineForClassFields": true,
     "module": "commonjs",
     "skipLibCheck": true,
-    "outDir": "../dist",
+    "outDir": "dist",
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "strict": true,

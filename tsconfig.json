@@ -5,7 +5,7 @@
     // "lib": ["ES2016", "DOM", "DOM.Iterable"],
     "module": "commonjs",
     "skipLibCheck": true,
-    "outDir": "./dist",
+    "outDir": "dist",
     // "allowImportingTsExtensions": true,
     "esModuleInterop": true,
 
