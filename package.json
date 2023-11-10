@@ -6,7 +6,7 @@
   "main": "server/dist/index.js",
   "scripts": {
     "start": "node server/dist/index.js",
-    "develop": "concurrently \"cd server && npm run build && npm run start\" \"cd client && npm run dev\"",
+    "develop": "concurrently \"cd server && npm run build && npm run start\" \"cd client && npm run build && npm run start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build"
   },
