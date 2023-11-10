@@ -26,5 +26,5 @@
   // "ts-node": {
   //   "files": true
   // },
-  "include": ["client/src/", "process-env.d.ts"]
+  "include": ["client/src/", "process-env.d.ts", "vite.config.ts"]
 }
