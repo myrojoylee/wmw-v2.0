@@ -9,7 +9,7 @@ const app: Express = express();
 app.use(cors());
 app.use(express.json());
 const port = process.env.PORT;
-const apiKey = "021e75b0e3380e236b4ff6031ae2dde4";
+const apiKey = process.env.API_KEY;
 console.log("where is my api key ?");
 
 if (process.env.NODE_ENV === "production") {
@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.get("/api/apiKey", (req: Request, res: Response) => {
-  res.send({ apiKey: apiKey });
+  res.send({ apiKey: process.env.API_KEY });
 });
 
 app.listen(port, () => {
