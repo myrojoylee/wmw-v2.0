@@ -5,13 +5,13 @@
     // "lib": ["ES2016", "DOM", "DOM.Iterable"],
     "module": "commonjs",
     "skipLibCheck": true,
-    // "outDir": "dist",
+    "outDir": "./dist",
     // "allowImportingTsExtensions": true,
     "esModuleInterop": true,
 
     /* Bundler mode */
     // "moduleResolution": "bundler",
-    // "resolveJsonModule": true,
+    "resolveJsonModule": true,
     // "isolatedModules": true,
     // "noEmit": true,
     "jsx": "react-jsx",
