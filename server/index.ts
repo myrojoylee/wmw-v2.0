@@ -18,6 +18,11 @@ if (process.env.NODE_ENV === "production") {
   app.get("*", (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "../../client/dist/index.html"));
   });
+
+  app.get("/api/apiKey", (req: Request, res: Response) => {
+    res.send({ apiKey: apiKey });
+    console.log(apiKey);
+  });
 }
 
 app.get("/api/apiKey", (req: Request, res: Response) => {
