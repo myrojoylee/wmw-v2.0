@@ -12,7 +12,7 @@
     "start": "node server/dist/index.js",
     "develop": "concurrently \"cd server && npm run build && npm run start\" \"cd client && npm run build && npm run start\"",
     "install": "cd server && npm i && cd ../client && npm i",
-    "build": "cd client && cross-env NODE_ENV=production npm build"
+    "build": "cd client && cross-env NODE_ENV=production npm run build"
   },
   "dependencies": {
     "cors": "^2.8.5",
