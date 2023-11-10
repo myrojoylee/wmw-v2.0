@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import useCurrentWeather from "./hooks/useCurrentWeather";
 
 const App = (): JSX.Element => {
