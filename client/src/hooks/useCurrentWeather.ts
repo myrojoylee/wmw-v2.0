@@ -37,6 +37,7 @@ const useCurrentWeather = () => {
       const apiKeyFetch = await fetch("/api/apiKey");
       const apiKeyFetchData = await apiKeyFetch.json();
       const apiKey = apiKeyFetchData.apiKey;
+
       return apiKey;
     } catch (e) {
       console.error(e);
