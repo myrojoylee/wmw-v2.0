@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.get("/api/apiKey", (req: Request, res: Response) => {
   res.send({ apiKey: apiKey });
-  console.log(apiKey);
+  console.log(`is this app.get working ?`);
 });
 
 app.listen(port, () => {
