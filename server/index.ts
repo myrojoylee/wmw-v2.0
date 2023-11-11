@@ -10,18 +10,15 @@ app.use(cors());
 app.use(express.json());
 const port = process.env.PORT;
 const apiKey = process.env.API_KEY;
-console.log(apiKey);
+console.log(
+  `if the server doc is being read, you'll see an api key here >> : ${apiKey}`
+);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../../client/dist")));
 
   app.get("*", (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "../../client/dist/index.html"));
-  });
-
-  app.get("/api/apiKey", (req: Request, res: Response) => {
-    res.send({ apiKey: apiKey });
-    console.log(apiKey);
   });
 }
 
