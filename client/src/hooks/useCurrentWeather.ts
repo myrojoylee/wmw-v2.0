@@ -8,20 +8,23 @@ const useCurrentWeather = () => {
   const [currentWeather, setCurrentWeather] =
     useState<currentWeatherType | null>(null);
 
-  //   useEffect(() => {
-  //     const renderUponLoad = async () => {
-  //       const data = await getCoordinates("Philadelphia");
+  useEffect(() => {
+    const renderUponLoad = async () => {
+      try {
+        const data = await getCoordinates("Philadelphia");
+        await getCurrentWeather(data[0]);
+        return currentWeather;
+      } catch (e) {
+        console.error(e);
+      }
+    };
 
-  //       await getCurrentWeather(data);
-  //       console.log(data);
-  //     };
-
-  //     try {
-  //       renderUponLoad();
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-  //   }, [""]);
+    try {
+      renderUponLoad();
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trimStart();
@@ -37,7 +40,7 @@ const useCurrentWeather = () => {
       const apiKeyFetch = await fetch("/api/apiKey");
       const apiKeyFetchData = await apiKeyFetch.json();
       const apiKey = apiKeyFetchData.apiKey;
-      console.log(apiKey);
+      //   console.log(apiKey);
       return apiKey;
     } catch (e) {
       console.error(e);

@@ -25,14 +25,23 @@ const App = (): JSX.Element => {
           Click to see if it'll snow, rain, or be swelteringly hot!
         </button>
       </section>
-      {/* {currentWeather ? ( */}
-      <section className="flex flex-col w-1/2">
-        <p>City: {currentWeather?.name}</p>
-        <p>Weather: {currentWeather?.weather[0].description}</p>
-        <p>Temp: {currentWeather?.main.temp}</p>
-        <p>Verdict:</p>
-      </section>
-      {/* ) : null} */}
+      {currentWeather ? (
+        <section className="flex flex-col w-1/2">
+          <p>
+            City: {currentWeather?.name}, {currentWeather?.sys.country}
+          </p>
+          <p>Weather: {currentWeather?.weather[0].description}</p>
+          <p>Temp: {currentWeather?.main.temp}</p>
+          <p>Verdict:</p>
+        </section>
+      ) : (
+        <section className="flex flex-col w-1/2">
+          <p>City: Loading...</p>
+          <p>Weather: Loading...</p>
+          <p>Temp: Loading...</p>
+          <p>Verdict: Loading...</p>
+        </section>
+      )}
     </main>
   );
 };
