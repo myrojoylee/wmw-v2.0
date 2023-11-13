@@ -25,6 +25,7 @@ const App = (): JSX.Element => {
           Get forecast!
         </button>
       </section>
+
       {options ? (
         <section className="absolute flex flex-col border-2 w-1/2 bg-white my-2 top-20">
           {options.map((option, index) => (
@@ -32,7 +33,7 @@ const App = (): JSX.Element => {
           ))}
         </section>
       ) : null}
-
+      
       {currentWeather ? (
         <section className="flex flex-col w-1/2">
           <p>City: {currentWeather?.name}</p>
@@ -40,7 +41,14 @@ const App = (): JSX.Element => {
           <p>Temp: {currentWeather?.main.temp}</p>
           <p>Verdict:</p>
         </section>
-      ) : null}
+      ) : (
+        <section className="flex flex-col w-1/2">
+          <p>City: Loading...</p>
+          <p>Weather: Loading...</p>
+          <p>Temp: Loading...</p>
+          <p>Verdict: Loading...</p>
+        </section>
+      )}
     </main>
   );
 };
