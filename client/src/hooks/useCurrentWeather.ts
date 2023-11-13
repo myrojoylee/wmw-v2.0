@@ -4,9 +4,11 @@ import { currentWeatherType, cityInfoType } from "../types";
 const useCurrentWeather = () => {
   const [input, setInput] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [options, setOptions] = useState<any[]>([]);
   const [cityInfo, setCityInfo] = useState<cityInfoType | any>("");
-  const [currentWeather, setCurrentWeather] =
-    useState<currentWeatherType | null>(null);
+  const [currentWeather, setCurrentWeather] = useState<
+    currentWeatherType | any
+  >("");
 
   useEffect(() => {
     const renderUponLoad = async () => {
@@ -29,8 +31,10 @@ const useCurrentWeather = () => {
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trimStart();
     setInput(value);
-    if (value === "") {
-      setCityInfo("");
+    if (value) {
+      generateOptionList(value);
+    } else {
+      setOptions([""]);
     }
     return input;
   };
@@ -42,6 +46,20 @@ const useCurrentWeather = () => {
       const apiKey = apiKeyFetchData.apiKey;
       //   console.log(apiKey);
       return apiKey;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function generateOptionList(input: string) {
+    try {
+      const apiKey = await fetchApiKey();
+      const response = await fetch(
+        `https://api.openweathermap.org/geo/1.0/direct?q=${input.trimStart()}&appid=${apiKey}&limit=5`
+      );
+
+      const data = await response.json();
+      setOptions(data);
     } catch (e) {
       console.error(e);
     }
@@ -65,7 +83,7 @@ const useCurrentWeather = () => {
   const getCurrentWeather = async (cityInfo: cityInfoType) => {
     try {
       const data = await getCoordinates(input);
-      setCityInfo(data[0]);
+      //   setCityInfo(data[0]);
       const apiKey = await fetchApiKey();
       const responseCurrent = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${cityInfo.lat}&lon=${cityInfo.lon}&appid=${apiKey}&units=Imperial`
@@ -92,6 +110,7 @@ const useCurrentWeather = () => {
 
   return {
     input,
+    options,
     cityInfo,
     searchTerm,
     handleInput,
