@@ -1,4 +1,5 @@
 // import { useState, useEffect } from "react";
+import Weather from "./components/Weather";
 import useCurrentWeather from "./hooks/useCurrentWeather";
 
 const App = (): JSX.Element => {
@@ -6,9 +7,9 @@ const App = (): JSX.Element => {
     input,
     options,
     handleInput,
+    currentWeather,
     handleOptionClick,
     handleSubmit,
-    currentWeather,
   } = useCurrentWeather();
 
   return (
@@ -44,24 +45,7 @@ const App = (): JSX.Element => {
           </ul>
         ) : null}
       </section>
-
-      {currentWeather ? (
-        <section className="flex flex-col w-1/2">
-          <p>
-            City: {currentWeather?.name}, {currentWeather?.sys.country}
-          </p>
-          <p>Weather: {currentWeather?.weather[0].description}</p>
-          <p>Temp: {currentWeather?.main.temp}</p>
-          <p>Verdict:</p>
-        </section>
-      ) : (
-        <section className="flex flex-col w-1/2">
-          <p>City: Loading...</p>
-          <p>Weather: Loading...</p>
-          <p>Temp: Loading...</p>
-          <p>Verdict: Loading...</p>
-        </section>
-      )}
+      <Weather currentWeather={currentWeather} />
     </main>
   );
 };
