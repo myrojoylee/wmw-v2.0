@@ -5,7 +5,7 @@ type Props = {
 };
 const Weather = ({ currentWeather }: Props): JSX.Element => {
   return (
-    <>
+    <section className="flex justify-center w-full h-full">
       {currentWeather ? (
         <section className="flex flex-col w-1/2">
           <p>
@@ -23,7 +23,7 @@ const Weather = ({ currentWeather }: Props): JSX.Element => {
           <p>Verdict: Loading...</p>
         </section>
       )}
-    </>
+    </section>
   );
 };
 
