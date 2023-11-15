@@ -1,28 +1,23 @@
-// import { useState, useEffect } from "react";
-import Header from "./components/Header";
-import Weather from "./components/Weather";
-import useCurrentWeather from "./hooks/useCurrentWeather";
+import { ChangeEvent } from "react";
+import { cityInfoType } from "../types";
 
-const App = (): JSX.Element => {
-  const {
-    input,
-    options,
-    handleInput,
-    currentWeather,
-    handleOptionClick,
-    handleSubmit,
-  } = useCurrentWeather();
+type Props = {
+  input: string;
+  options: any[];
+  handleInput: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleOptionClick: (option: cityInfoType) => void;
+  handleSubmit: (input: string) => void;
+};
 
+const Header = ({
+  input,
+  options,
+  handleInput,
+  handleOptionClick,
+  handleSubmit,
+}: Props): JSX.Element => {
   return (
-    <main className="flex justify-center items-center w-full flex-col h-[100vh] space-y-10 bg-gradient-to-r from-cyan-200 to-sky-400">
-      <Header
-        input={input}
-        options={options}
-        handleInput={handleInput}
-        handleOptionClick={handleOptionClick}
-        handleSubmit={handleSubmit}
-      />
-      {/* 
+    <header className="flex flex-col justify-center items-center w-full">
       <h1 className="flex text-center font-mono text-xl font-bold">
         Tell me if it's hot or cold
       </h1>
@@ -53,10 +48,9 @@ const App = (): JSX.Element => {
             ))}
           </ul>
         ) : null}
-      </section> */}
-      <Weather currentWeather={currentWeather} />
-    </main>
+      </section>
+    </header>
   );
 };
 
-export default App;
+export default Header;
