@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 import { cityInfoType } from "../types";
 import cloudLoop from "../assets/cloud-loops.mp4";
+import wmwIcon from "../assets/whats-my-weather-icon.png";
 
 type Props = {
   input: string;
@@ -18,7 +19,7 @@ const Header = ({
   handleSubmit,
 }: Props): JSX.Element => {
   return (
-    <header className="relative flex flex-col justify-center items-center overflow-hidden w-full h-52">
+    <header className="relative flex flex-col justify-center items-center w-full overflow-hidden h-52">
       <video
         autoPlay
         loop
@@ -29,28 +30,30 @@ const Header = ({
         <source src={cloudLoop} type="video/mp4" />
       </video>
 
-      <section className="relative justify-between flex flex-col lg:w-2/3 md:w-2/3 sm:w-3/4 w-3/4 border-slate-400 border">
-        <div>
-          <h1 className="flex text-center font-mono text-xl font-bold">
-            Tell me if it's hot or cold
+      <section className="relative justify-center items-center flex flex-col lg:flex-row gap-3 lg:gap-2 w-5/6 md:w-1/2 lg:w-5/6 -top-6">
+        <div className="flex justify-center items-center w-fit gap-2">
+          <img src={wmwIcon} className="w-12 lg:w-16 border-2 border-sky-400" />
+          <h1 className="flex text-center font-mono text-l md:text-xl lg:text-3xl font-bold text-white">
+            What's My Weather?
           </h1>
         </div>
-        <div className="flex">
+        <div className="flex w-full h-2/3">
           <input
             type="text"
             value={input}
-            className="flex w-7/12 lg:w-3/4 md:w-3/4 sm:w-2/3 z-10 text-black px-1 m-1"
+            className="flex items-center w-full z-10 text-black p-1 m-1 rounded-xl border border-sky-600"
             placeholder="Type in a city"
             onChange={handleInput}
           />
           <button
             onClick={() => handleSubmit(input)}
-            className="flex text-white bg-sky-900 border-black rounded-md px-1 hover:bg-slate-100 hover:text-black m-1"
+            className="flex items-center text-white bg-sky-600 border-black rounded-md px-1 hover:bg-slate-100 hover:text-black m-1"
           >
-            Get forecast!
+            Go!
           </button>
+
           {options ? (
-            <ul className="absolute bg-white top-8 w-7/12 lg:w-3/4 md:w-3/4 sm:w-2/3 rounded-sm m-1">
+            <ul className="absolute bg-white w-3/4 lg:w-3/5 top-24 lg:top-14 rounded-sm m-1 z-20 overflow-scroll">
               {options.map((option, index) => (
                 <li
                   key={index}
