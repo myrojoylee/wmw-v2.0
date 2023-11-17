@@ -22,7 +22,7 @@ const App = (): JSX.Element => {
         handleOptionClick={handleOptionClick}
         handleSubmit={handleSubmit}
       />
-      <main className="flex justify-center items-center w-full flex-col h-screen bg-gradient-to-r from-sky-400 via-sky-300 to-sky-600">
+      <main className="flex justify-center w-full h-screen bg-gradient-to-r from-sky-400 via-sky-300 to-sky-600">
         <Weather currentWeather={currentWeather} />
       </main>
     </>
