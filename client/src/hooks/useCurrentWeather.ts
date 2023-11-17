@@ -5,6 +5,7 @@ const useCurrentWeather = () => {
   const [input, setInput] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [options, setOptions] = useState<any[]>([]);
+  const [uniqueCities, setUniqueCities] = useState<any[]>([]);
   const [cityInfo, setCityInfo] = useState<cityInfoType | any>("");
   const [currentWeather, setCurrentWeather] = useState<
     currentWeatherType | any
@@ -32,8 +33,14 @@ const useCurrentWeather = () => {
   const handleInput = async (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trimStart();
     setInput(value);
-    if (value.length > 1) {
+    if (value.length >= 1) {
       const data = await generateOptionList(value);
+      setOptions(data);
+      setUniqueCities(
+        removeDuplicateCities.map((option: cityInfoType) => option)
+      );
+      console.log(uniqueCities);
+
       return data;
     } else {
       setOptions([""]);
@@ -41,10 +48,10 @@ const useCurrentWeather = () => {
     return input;
   };
 
-  const handleOutsideClick = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log("did i click outside somewhere?");
-    setOptions([""]);
-  };
+  //   const handleOutsideClick = (e: ChangeEvent<HTMLInputElement>) => {
+  //     console.log("did i click outside somewhere?");
+  //     setOptions([""]);
+  //   };
 
   async function fetchApiKey() {
     try {
@@ -58,6 +65,17 @@ const useCurrentWeather = () => {
     }
   }
 
+  const removeDuplicateCities = options.reduce((accumulator, current) => {
+    if (
+      !accumulator.find(
+        (option: cityInfoType) => option.state === current.state
+      )
+    ) {
+      accumulator.push(current);
+    }
+    return accumulator;
+  }, []);
+
   async function generateOptionList(input: string) {
     try {
       const apiKey = await fetchApiKey();
@@ -66,7 +84,12 @@ const useCurrentWeather = () => {
       );
 
       const data = await response.json();
-      setOptions(data);
+      //   console.log(data);
+      //   setUniqueCities(removeDuplicateCities.map((data: cityInfoType) => data));
+      //   console.log(uniqueCities);
+      //   setOptions(data);
+      //   console.log(removeDuplicateCities.map((option: cityInfoType) => option));
+
       return data;
     } catch (e) {
       console.error(e);
@@ -99,9 +122,6 @@ const useCurrentWeather = () => {
   // get current weather
   const getCurrentWeather = async (cityInfo: cityInfoType) => {
     try {
-      //   setCurrentWeather();
-      //   console.log(currentWeather);
-      //   console.log(input);
       const data = await getCoordinates(input);
       setCityInfo(data[0]);
       const apiKey = await fetchApiKey();
@@ -119,16 +139,11 @@ const useCurrentWeather = () => {
   // getting weather when you click button
   async function handleSubmit(input: string) {
     try {
-      //   console.log(searchTerm);
-      //   console.log(optionClick);
-
       if (optionClick) {
         setInput(searchTerm);
       }
-      //   console.log(input);
       const data = await getCoordinates(input);
       await getCurrentWeather(data[0]);
-      //   console.log(currentWeather);
       setOptions([""]);
     } catch (e) {
       console.error(e);
