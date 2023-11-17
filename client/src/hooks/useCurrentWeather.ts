@@ -130,6 +130,7 @@ const useCurrentWeather = () => {
       );
       const todaysWeather = await responseCurrent.json();
       setCurrentWeather(todaysWeather);
+      console.log(currentWeather);
       return currentWeather;
     } catch (e) {
       console.error(e);
@@ -144,6 +145,7 @@ const useCurrentWeather = () => {
       }
       const data = await getCoordinates(input);
       await getCurrentWeather(data[0]);
+
       setOptions([""]);
     } catch (e) {
       console.error(e);

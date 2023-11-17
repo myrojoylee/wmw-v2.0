@@ -16,6 +16,7 @@ export type currentWeatherType = {
   sys: {
     country: string;
   };
+  timezone: number;
   weather: {
     0: {
       description: string;
