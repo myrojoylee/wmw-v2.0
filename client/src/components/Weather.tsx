@@ -5,8 +5,10 @@ type Props = {
 };
 const Weather = ({ currentWeather }: Props): JSX.Element => {
   const formatDate = (unixDate: number, timezone: number) => {
-    let date = new Date((unixDate + timezone) * 1000);
-    return date.toUTCString();
+    console.log(unixDate);
+    console.log(timezone);
+    let date = new Date((unixDate - timezone) * 1000);
+    return date.toLocaleString();
   };
 
   //   const getDayName = (unixDate: number, timezone: number) => {
