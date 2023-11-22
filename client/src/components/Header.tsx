@@ -37,7 +37,7 @@ const Header = ({
               src={wmwIcon}
               className="w-12 lg:w-16 border-2 border-sky-400"
             />
-            <h1 className="flex text-center font-mono text-l md:text-xl lg:text-3xl font-bold text-white">
+            <h1 className="flex text-center font-mono text-2xl lg:text-3xl font-bold text-white">
               What's My Weather?
             </h1>
           </div>
