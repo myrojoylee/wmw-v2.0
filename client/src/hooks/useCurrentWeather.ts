@@ -124,6 +124,7 @@ const useCurrentWeather = () => {
     try {
       const data = await getCoordinates(input);
       setCityInfo(data[0]);
+      console.log(cityInfo);
       const apiKey = await fetchApiKey();
       const responseCurrent = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${cityInfo.lat}&lon=${cityInfo.lon}&appid=${apiKey}&units=Imperial`
