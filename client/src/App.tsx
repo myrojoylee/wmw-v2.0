@@ -6,6 +6,7 @@ import useCurrentWeather from "./hooks/useCurrentWeather";
 const App = (): JSX.Element => {
   const {
     input,
+    cityInfo,
     options,
     handleInput,
     currentWeather,
@@ -22,8 +23,8 @@ const App = (): JSX.Element => {
         handleOptionClick={handleOptionClick}
         handleSubmit={handleSubmit}
       />
-      <main className="flex justify-center w-full h-screen bg-gradient-to-r from-sky-400 via-sky-300 to-sky-600">
-        <Weather currentWeather={currentWeather} />
+      <main className="flex justify-center w-full h-[100vh] bg-gradient-to-r from-sky-400 via-sky-300 to-sky-600">
+        <Weather currentWeather={currentWeather} cityInfo={cityInfo} />
       </main>
     </>
   );

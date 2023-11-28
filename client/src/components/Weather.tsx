@@ -1,12 +1,16 @@
-import { currentWeatherType } from "../types";
+import { cityInfoType, currentWeatherType } from "../types";
+import MapBox from "./MapBox";
+import L from "leaflet";
 
 type Props = {
   currentWeather: currentWeatherType;
+  cityInfo: cityInfoType;
 };
-const Weather = ({ currentWeather }: Props): JSX.Element => {
+
+const Weather = ({ currentWeather, cityInfo }: Props): JSX.Element => {
   const formatDate = (unixDate: number, timezone: number) => {
-    console.log(unixDate);
-    console.log(timezone);
+    // console.log(unixDate);
+    // console.log(timezone);
     let date = new Date((unixDate - timezone) * 1000);
     return date.toLocaleString();
   };
@@ -24,7 +28,7 @@ const Weather = ({ currentWeather }: Props): JSX.Element => {
   return (
     <>
       {currentWeather ? (
-        <section className="flex flex-col w-full m-10 p-2 bg-white gap-5">
+        <section className="flex flex-col w-full m-10 p-2 bg-white gap-5 h-fit">
           <div className="flex flex-col md: flex-row items-center md:justify-between">
             <p className="text-2xl font-light">
               <span className="uppercase font-bold">
@@ -64,9 +68,10 @@ const Weather = ({ currentWeather }: Props): JSX.Element => {
                 <p>Humidity: {currentWeather.main.humidity} %</p>
               </div>
             </div>
-            <div className="flex w-full md:w-1/2 border-2 border-black p-2 rounded-md">
+            <MapBox cityInfo={cityInfo} />
+            {/* <div className="flex w-full md:w-1/2 h-40 border-2 border-black p-2 rounded-md">
               Map goes here
-            </div>
+            </div> */}
           </div>
         </section>
       ) : (
