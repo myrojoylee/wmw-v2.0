@@ -1,6 +1,6 @@
 import { cityInfoType, currentWeatherType } from "../types";
 import MapBox from "./MapBox";
-import L from "leaflet";
+// import L from "leaflet";
 
 type Props = {
   currentWeather: currentWeatherType;
